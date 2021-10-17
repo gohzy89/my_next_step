@@ -9,13 +9,22 @@ import './reset.dart';
 import './account.dart';
 import './splash.dart';
 import 'package:flutter/services.dart';
+
+import 'package:crypto/crypto.dart';
+import 'dart:convert';
+
+import 'InputSubjectsPage.dart'; // for the utf8.encode method
 void main() {
+
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

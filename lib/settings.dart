@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_next_step/accinfo.dart';
-import 'package:my_next_step/inputsubjectspage/InputSubjectsPage.dart';
+import 'package:my_next_step/InputSubjectsPage.dart';
 import './account.dart';
 
 class settings extends StatefulWidget {
@@ -31,7 +31,7 @@ class _settingsState extends State<settings> {
                         children: [
                           ElevatedButton(
                             onPressed: () {
-                              accinfo.fromsettings = true;
+                              //accinfo.fromsettings = true;
                               Navigator.push(context,MaterialPageRoute(builder: (context) => InputSubjectsPage()));},
                             child: Text("Preferences",style: TextStyle(fontSize: 40,color: Colors.black),),
                             style: ButtonStyle(
@@ -73,6 +73,9 @@ class _settingsState extends State<settings> {
                               accinfo.isloggedin = false;
                               Navigator.pop(context);
                               Navigator.pop(context);
+                              if(Navigator.canPop(context))//create account page
+                                Navigator.pop(context);
+                              //Navigator.pop(context);
                             },
                             child: Text("Logout",style: TextStyle(fontSize: 20,color: Colors.black),),
                             style: ButtonStyle(

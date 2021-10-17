@@ -6,12 +6,8 @@ import 'dart:io';
 
 class accinfo {
 
-
-
-
   static Map allcourse = new Map();
   static Map schools = {"N":"Ngee Ann Polytechnic","T":"Temasek Polytechnic","C":"Nanyang Polytechnic","R":"Republic Polytechnic","S":"Singapore Polytechnic"};
-
 
   void mapcourse1(Map map){
     for(int i=0;i<map['total'];i++){
@@ -21,12 +17,12 @@ class accinfo {
     }
   }
 
-
-
   static List<String> favlist = [
   ];
   static bool isloggedin = false;
   static bool fromsettings = false;
   static bool fromfav = false;
+
+  static String username = "";
 
 }
