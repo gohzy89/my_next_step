@@ -11,11 +11,72 @@ class browse extends StatefulWidget {
 }
 
 class _browseState extends State<browse> {
+  
+  String returnschool(String value,int index){
+    switch(value){
+      case "School":return accinfo.allcourse[accinfo.allcourse.keys.elementAt(index)]["school_name"];
+      case 'Cut-Off':return accinfo.allcourse[accinfo.cutofflist[index]]["school_name"];
+      case 'Alphabet':return accinfo.allcourse[accinfo.alphabetlist[index]]["school_name"];
+      case 'Location':return accinfo.allcourse[accinfo.allcourse.keys.elementAt(index)]["school_name"];
+    }
+    return "";
+  }
+  String returncutoff(String value,int index){
+    switch(value){
+      case "School":return accinfo.allcourse[accinfo.allcourse.keys.elementAt(index)]["courseCutOff"];
+      case 'Cut-Off':return accinfo.allcourse[accinfo.cutofflist[index]]["courseCutOff"];
+      case 'Alphabet':return accinfo.allcourse[accinfo.alphabetlist[index]]["courseCutOff"];
+      case 'Location':return accinfo.allcourse[accinfo.allcourse.keys.elementAt(index)]["courseCutOff"];
+    }
+    return "";
+  }
+
+  String returncourse(String value,int index){
+    switch(value){
+      case "School":return accinfo.allcourse[accinfo.allcourse.keys.elementAt(index)]["courseName"];
+      case 'Cut-Off':return accinfo.allcourse[accinfo.cutofflist[index]]["courseName"];
+      case 'Alphabet':return accinfo.allcourse[accinfo.alphabetlist[index]]["courseName"];
+      case 'Location':return accinfo.allcourse[accinfo.allcourse.keys.elementAt(index)]["courseName"];
+    }
+    return "";
+  }
+  String returncode(String value,int index){
+    switch(value){
+      case "School":return accinfo.allcourse.keys.elementAt(index);
+      case 'Cut-Off':return accinfo.cutofflist[index];
+      case 'Alphabet':return accinfo.alphabetlist[index];
+      case 'Location':return accinfo.allcourse.keys.elementAt(index);
+    }
+    return "";
+  }
+
+  List<String> searchresult=[];
+  
   String filtervalue ='School';
   Future<List<Widget>> search(String? search) async {
     await Future.delayed(Duration(seconds: 2));
-    return List.generate(search!.length, (int index) {
-      return Center(child: Text("no result"));
+    searchresult = [];
+    for(int i=0;i<accinfo.allcourse.length;i++){
+      if(accinfo.allcourse[accinfo.allcourse.keys.elementAt(i)]["courseName"].toLowerCase().contains(search?.toLowerCase()))
+        searchresult.add(accinfo.allcourse.keys.elementAt(i));
+    }
+    return List.generate(searchresult.length, (int index) {
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(0, 3, 0, 3),
+        child: ListTile(
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => selected(searchresult[index])));
+          },
+          title: Text("School: ${accinfo.allcourse[searchresult[index]]["school_name"]} \nCourse: ${accinfo.allcourse[searchresult[index]]["courseName"]}\nCut-off:${accinfo.allcourse[searchresult[index]]["courseCutOff"]}"),
+          leading: Image.asset('assets/images/${searchresult[index][0]}.jpg'),
+          shape: RoundedRectangleBorder(
+
+            // side: BorderSide(color: Colors.red,width: 3)  have to figure out how to implement border color
+          )
+          ,
+          tileColor: Colors.white,
+          trailing: Icon(Icons.arrow_forward_outlined,color: Colors.black,),),
+      );
     });
   }
 
@@ -61,10 +122,10 @@ class _browseState extends State<browse> {
                         padding: const EdgeInsets.fromLTRB(0, 3, 0, 3),
                         child: ListTile(
                           onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => selected(accinfo.allcourse.keys.elementAt(index))));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => selected(returncode(filtervalue, index))));
                           },
-                            title: Text("School: ${accinfo.allcourse[accinfo.allcourse.keys.elementAt(index)]["school_name"]} \nCourse: ${accinfo.allcourse[accinfo.allcourse.keys.elementAt(index)]["courseName"]}\nCut-off:${accinfo.allcourse[accinfo.allcourse.keys.elementAt(index)]["courseCutOff"]}"),
-                          leading: Image.asset('assets/images/${accinfo.allcourse.keys.elementAt(index)[0]}.jpg'),
+                            title: Text("School: ${returnschool(filtervalue, index)} \nCourse: ${returncourse(filtervalue, index)}\nCut-off:${returncutoff(filtervalue, index)}"),
+                          leading: Image.asset('assets/images/${returncode(filtervalue, index)[0]}.jpg'),
                           shape: RoundedRectangleBorder(
 
                              // side: BorderSide(color: Colors.red,width: 3)  have to figure out how to implement border color
