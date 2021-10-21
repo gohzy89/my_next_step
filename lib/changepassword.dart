@@ -1,5 +1,9 @@
+import 'package:crypto/crypto.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_next_step/accinfo.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class changepassword extends StatefulWidget {
   const changepassword({Key? key}) : super(key: key);
@@ -18,10 +22,63 @@ class _changepasswordState extends State<changepassword> {
   bool ua_obscurecpw = true;
   bool ua_obscureopw = true;
 
+  bool showProgess = false;
+  bool enableWidgets = true;
+
+  Future updatePassword() async {
+    setState(() {
+      enableWidgets = false;
+      showProgess = true;
+    });
+
+    String url = "http://immoral-boilers.000webhostapp.com/updatePassword.php";
+    var response = await http.post(Uri.parse(url), body: {
+      "username": accinfo.username,
+      "password": ua_pwinpt.text,
+    });
+    print(response);
+    print("isEmpty: ${response.body.isEmpty.toString()}");
+
+    if (response.body.isEmpty == true) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Update Failed. Please try again."),
+      ));
+    } else {
+      try {
+        var data = json.decode(response.body);
+        print("data: $data");
+        if (data["result"] == 0) {
+          print("Reason for failing: ${data["reason"]}");
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(data["reason"]),
+          ));
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text("Update Successful"),
+          ));
+
+          //await Future.delayed(Duration(seconds: 1));
+
+          Navigator.pop(context);
+        }
+      } catch (e) {
+        print("Enter catch");
+        print(e);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: const Text("Unexpected error. Please try again."),
+        ));
+      }
+    }
+    setState(() {
+      enableWidgets = true;
+      showProgess = false;
+    });
+  }
+
   @override
-  Widget build(BuildContext context) {
-    return Material(
-      child: SafeArea(
+  Widget build(BuildContext context) =>
+     Scaffold(
+      body: SafeArea(
         child: Stack(children: [
           Container(
             height: MediaQuery.of(context).size.height * 0.95,
@@ -55,7 +112,6 @@ class _changepasswordState extends State<changepassword> {
               ),
             ),
           ),
-
           Container(
             child: Form(
               key: _cformkey,
@@ -63,15 +119,16 @@ class _changepasswordState extends State<changepassword> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0.0,85, 0.0, 15),
+                    padding: const EdgeInsets.fromLTRB(0.0, 85, 0.0, 15),
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: Container(
                         height: 40,
-                        width: MediaQuery.of(context).size.width*0.8,
+                        width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
                           obscureText: ua_obscureopw,
-                          decoration: InputDecoration(hintText: 'Old Password',
+                          decoration: InputDecoration(
+                              hintText: 'Old Password',
                               suffixIcon: IconButton(
                                 icon: Icon(ua_obscureopw
                                     ? Icons.remove_red_eye
@@ -81,24 +138,30 @@ class _changepasswordState extends State<changepassword> {
                                     ua_obscureopw = !ua_obscureopw;
                                   });
                                 },
-                              )
-                          ),
+                              )),
                           controller: ua_opwinpt,
-                          validator: (String? value) {},
+                          validator: (value) {
+                            if(value==null) return "No input";
+                            if(sha1.convert(utf8.encode(value)).toString()!=accinfo.password){
+                              return 'Wrong Old Password';
+                            }
+
+                          },
                         ),
                       ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0.0,15, 0.0, 15),
+                    padding: const EdgeInsets.fromLTRB(0.0, 15, 0.0, 15),
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: Container(
                         height: 40,
-                        width: MediaQuery.of(context).size.width*0.8,
+                        width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
                           obscureText: ua_obscurepw,
-                          decoration: InputDecoration(hintText: 'Password',
+                          decoration: InputDecoration(
+                              hintText: 'Password',
                               suffixIcon: IconButton(
                                 icon: Icon(ua_obscurepw
                                     ? Icons.remove_red_eye
@@ -108,8 +171,7 @@ class _changepasswordState extends State<changepassword> {
                                     ua_obscurepw = !ua_obscurepw;
                                   });
                                 },
-                              )
-                          ),
+                              )),
                           controller: ua_pwinpt,
                           validator: (String? value) {},
                         ),
@@ -122,11 +184,11 @@ class _changepasswordState extends State<changepassword> {
                       alignment: Alignment.topCenter,
                       child: Container(
                         height: 40,
-                        width: MediaQuery.of(context).size.width*0.8,
+                        width: MediaQuery.of(context).size.width * 0.8,
                         child: TextFormField(
                           obscureText: ua_obscurecpw,
-                          decoration:
-                          InputDecoration(hintText: 'Confirm Password',
+                          decoration: InputDecoration(
+                              hintText: 'Confirm Password',
                               suffixIcon: IconButton(
                                 icon: Icon(ua_obscurecpw
                                     ? Icons.remove_red_eye
@@ -143,13 +205,14 @@ class _changepasswordState extends State<changepassword> {
                       ),
                     ),
                   ),
-
                   ElevatedButton(
                       style: ButtonStyle(
                         fixedSize: MaterialStateProperty.all(Size(300, 40)),
                       ),
                       onPressed: () {
-                        if (_cformkey.currentState!.validate()) ;
+                        if (_cformkey.currentState!.validate()){
+                          updatePassword();
+                        }
                       },
                       child: Text(
                         'Update',
@@ -159,9 +222,13 @@ class _changepasswordState extends State<changepassword> {
               ),
             ),
           ),
-
+          Center(
+            child: Visibility(
+              child: CircularProgressIndicator(),
+              visible: showProgess,
+            ),
+          )
         ]),
       ),
     );
   }
-}
