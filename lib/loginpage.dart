@@ -51,8 +51,20 @@ class _loginState extends State<login> {
         ));
         accinfo.isloggedin = true;
         print(lp_uinpt.text);
-        accinfo.username = lp_uinpt.text;
+        accinfo.username = data["username"];
+        accinfo.password = data["password"];
+        accinfo.email = data["email"];
+        accinfo.score_a = data["score_a"];
+        accinfo.score_b = data["score_b"];
+        accinfo.score_c = data["score_c"];
+        accinfo.score_d = data["score_d"];
+        accinfo.interest = data["interest"];
         print(accinfo.username);
+        print(accinfo.password);
+        print(accinfo.email);
+        print(accinfo.score_a);
+        print(accinfo.interest);
+
         Navigator.push(
           context,
           MaterialPageRoute(

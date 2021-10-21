@@ -24,5 +24,12 @@ class accinfo {
   static bool fromfav = false;
 
   static String username = "";
+  static String password = "";
+  static String email = "";
+  static String score_a = "" ;
+  static String score_b =  "";
+  static String score_c = "";
+  static String score_d = "";
+  static String interest = "";
 
 }
