@@ -72,7 +72,7 @@ class _selectedState extends State<selected> {
                           child: Text(coursename+" ($coursecode)",style: TextStyle(fontSize: 25,),textAlign: TextAlign.center,)),
                       IconButton(
                           onPressed: () {
-                            if(!accinfo.favlist.contains(coursecode))
+                            if(!accinfo.favlist.contains(coursecode)&&accinfo.isloggedin)
                             {
                               accinfo.favlist.add(coursecode);
                             setState(() {
@@ -80,7 +80,7 @@ class _selectedState extends State<selected> {
                             });
                             }
                             else{
-
+                              if(accinfo.isloggedin)
                               setState(() {
                                 accinfo.favlist.removeAt(accinfo.favlist.indexOf(coursecode));
                                 favbtncolor = Colors.black;
