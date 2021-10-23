@@ -34,7 +34,7 @@ class _changepasswordState extends State<changepassword> {
     String url = "http://immoral-boilers.000webhostapp.com/updatePassword.php";
     var response = await http.post(Uri.parse(url), body: {
       "username": accinfo.username,
-      "password": ua_pwinpt.text,
+      "password": sha1.convert(utf8.encode(ua_pwinpt.text)).toString() ,
     });
     print(response);
     print("isEmpty: ${response.body.isEmpty.toString()}");

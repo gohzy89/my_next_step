@@ -55,6 +55,7 @@ class _LocationPageState extends State<LocationPage> {
             showProgess = false;
             enableWidgets = true;
           });
+          accinfo.location = locations.indexOf(dropdownValue).toString();
 
           Navigator.pop(context);
           Navigator.pop(context);

@@ -52,6 +52,7 @@ class _PreferencePageState extends State<PreferencePage> {
 
           //await Future.delayed(Duration(seconds: 1));
 
+          accinfo.interest = selectedInterests.join(',');
           Navigator.push(
             context,
             MaterialPageRoute(

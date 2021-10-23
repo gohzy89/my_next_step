@@ -73,6 +73,13 @@ class _InputSubjectsPageState extends State<InputSubjectsPage> {
           //   enableWidgets = true;
           // });
 
+
+
+          accinfo.score_a = scores[0].toString();
+          accinfo.score_b = scores[1].toString();
+          accinfo.score_c = scores[2].toString();
+          accinfo.score_d = scores[3].toString();
+
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text("Update Successful")));
           //await Future.delayed(Duration(seconds: 1));

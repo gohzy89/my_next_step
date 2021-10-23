@@ -123,7 +123,7 @@ class _loginState extends State<login> {
                         child: TextFormField(
                           decoration: const InputDecoration(hintText: 'Username'),
                           controller: lp_uinpt,
-                          validator: (String? value) {},
+                          validator: (String? value) {if(value==null) return "Invalid";},
                         ),
                       ),
                     ),
@@ -152,7 +152,7 @@ class _loginState extends State<login> {
                               },
                             )),
                         controller: lp_pinpt,
-                        validator: (String? value) {},
+                        validator: (String? value) {if(value==null) return "Invalid";},
                       ),
                     ),
                   ),
@@ -185,9 +185,9 @@ class _loginState extends State<login> {
 
 
                         if (_cformkey.currentState!.validate()) {
-                          accinfo.isloggedin = true;
+                          login();
                         }
-                        login();
+
                       },
                       child: Text(
                         'Sign In',
