@@ -59,6 +59,7 @@ class _loginState extends State<login> {
         accinfo.score_c = data["score_c"];
         accinfo.score_d = data["score_d"];
         accinfo.interest = data["interest"];
+        accinfo.location = data["location"];
         print(accinfo.username);
         print(accinfo.password);
         print(accinfo.email);

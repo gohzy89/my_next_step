@@ -10,7 +10,12 @@ class accinfo {
     "T": "Temasek Polytechnic",
     "C": "Nanyang Polytechnic",
     "R": "Republic Polytechnic",
-    "S": "Singapore Polytechnic"
+    "S": "Singapore Polytechnic",
+    "0": "Republic Polytechnic",
+    "1": "Singapore Polytechnic",
+    "2": "Temasek Polytechnic",
+    "3": "Ngee Ann Polytechnic",
+    "4": "Nanyang Polytechnic"
   };
 
   void mapcourse1(Map map) {
@@ -95,7 +100,7 @@ class accinfo {
       recommendedlist.add(allcourse.keys.elementAt(i));
       recommendedlistalphabet.add(allcourse[allcourse.keys.elementAt(i)]["courseName"]);
     }
-    print(recommendedlist);
+    print(location);
 
     for(int i=recommendedlist.length-1;i>=0;i--){
       switch(allcourse[recommendedlist[i]]["ELR2B2_Type"][7]){
@@ -123,6 +128,13 @@ class accinfo {
     for(int i=0;i<recommendedlist.length;i++){
       inserttocutoff1(recommendedlist[i]);
       if(allcourse[recommendedlist[i]]["courseSchool"]==interest) {
+        recommendedlist.insert(0, recommendedlist[i]);
+        recommendedlist.removeAt(i+1);
+      }
+    }
+    for(int i=0;i<recommendedlist.length;i++){
+      inserttocutoff1(recommendedlist[i]);
+      if(allcourse[recommendedlist[i]]["courseSchool"]==interest&&allcourse[recommendedlist[i]]["school_name"]==schools[location]) {
         recommendedlist.insert(0, recommendedlist[i]);
         recommendedlist.removeAt(i+1);
       }

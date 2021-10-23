@@ -42,7 +42,6 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         canvasColor: Colors.white,
         backgroundColor: Colors.white,
-        brightness: Brightness.light,
         primarySwatch: Colors.red,
       ),
       home: Splash(),

@@ -47,6 +47,7 @@ class _LocationPageState extends State<LocationPage> {
             content: Text(data["reason"]),
           ));
         } else {
+          accinfo.location = locations.indexOf(dropdownValue).toString();
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text("Update Successful"),
           ));
