@@ -32,7 +32,6 @@ dependencies:
   email_validator: '^1.0.6'
   flappy_search_bar_ns: ^2.0.2
   http:
-  fluttertoast:
   crypto:
 
   # The following adds the Cupertino Icons font to your application.

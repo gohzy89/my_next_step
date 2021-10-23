@@ -5,6 +5,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:my_next_step/accinfo.dart';
 
+
+
+
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
 
