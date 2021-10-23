@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
     if(status)
     return ElevatedButton.icon(
       onPressed:
-          () {Navigator.push(context,MaterialPageRoute(builder: (context) => recommend()));},
+          () {accinfo.generaterrecommendedlist();Navigator.push(context,MaterialPageRoute(builder: (context) => recommend()));print(accinfo.recommendedlist);print(accinfo.recommendedlistcutoff);print(accinfo.recommendedlistalphabet);},
       icon: Icon(Icons.list,size: 50,color: Colors.black,),
       label: Container(width: MediaQuery.of(context).size.width*0.4,child: Text("Courses for you",style: TextStyle(fontSize: 30,color: Colors.black,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)),
       style: ButtonStyle(

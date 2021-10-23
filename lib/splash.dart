@@ -16,14 +16,12 @@ class _SplashState extends State<Splash> {
 
   final String apiUrl1 = "https://immoral-boilers.000webhostapp.com/getAllCourses.php";
 
-  Future<void> fetchUsers() async {
+  Future<void> fetchCourse() async {
 
     var result1 = await http.get(apiUrl1);
     setState(() {
       accinfo().mapcourse1(json.decode(result1.body));
     });
-
-
 
 
   }
@@ -36,7 +34,7 @@ class _SplashState extends State<Splash> {
 
   }
   _returnhome()async{
-    fetchUsers();
+    fetchCourse();
     await Future.delayed(Duration(milliseconds: 3000),(){});
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => login()));
   }

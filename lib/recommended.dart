@@ -13,6 +13,54 @@ class recommend extends StatefulWidget {
 class _recommendState extends State<recommend> {
   String filtervalue = 'School';
 
+  String returnschool(String value,int index){
+    switch(value){
+      case "School":return accinfo.allcourse[accinfo.recommendedlist[index]]["school_name"];
+      case 'Cut-Off':return accinfo.allcourse[accinfo.recommendedlistcutoff[index]]["school_name"];
+      case 'Alphabet':return accinfo.allcourse[accinfo.recommendedlistalphabet[index]]["school_name"];
+      case 'Location':return accinfo.allcourse[accinfo.recommendedlist[index]]["school_name"];
+    }
+    return "";
+  }
+  String returncutoff(String value,int index){
+    switch(value){
+      case "School":return accinfo.allcourse[accinfo.recommendedlist[index]]["courseCutOff"];
+      case 'Cut-Off':return accinfo.allcourse[accinfo.recommendedlistcutoff[index]]["courseCutOff"];
+      case 'Alphabet':return accinfo.allcourse[accinfo.recommendedlistalphabet[index]]["courseCutOff"];
+      case 'Location':return accinfo.allcourse[accinfo.recommendedlist[index]]["courseCutOff"];
+    }
+    return "";
+  }
+
+  String returncourse(String value,int index){
+    switch(value){
+      case "School":return accinfo.allcourse[accinfo.recommendedlist[index]]["courseName"];
+      case 'Cut-Off':return accinfo.allcourse[accinfo.recommendedlistcutoff[index]]["courseName"];
+      case 'Alphabet':return accinfo.allcourse[accinfo.recommendedlistalphabet[index]]["courseName"];
+      case 'Location':return accinfo.allcourse[accinfo.recommendedlist[index]]["courseName"];
+    }
+    return "";
+  }
+  String returncode(String value,int index){
+    switch(value){
+      case "School":return accinfo.recommendedlist[index];
+      case 'Cut-Off':return accinfo.recommendedlistcutoff[index];
+      case 'Alphabet':return accinfo.recommendedlistalphabet[index];
+      case 'Location':return accinfo.recommendedlist[index];
+    }
+    return "";
+  }
+
+  int returnlist(String value){
+    switch(value){
+      case "School":return accinfo.recommendedlist.length;
+      case 'Cut-Off':return accinfo.recommendedlistcutoff.length;
+      case 'Alphabet':return accinfo.recommendedlistalphabet.length;
+      case 'Location':return accinfo.recommendedlist.length;
+    }
+    return 0;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -73,15 +121,15 @@ class _recommendState extends State<recommend> {
               builder: (BuildContext context, ScrollController scrollController) {
                 return ListView.separated(
                   controller: scrollController,
-                  itemCount: accinfo.allcourse.length,
+                  itemCount: returnlist(filtervalue),
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
                       padding: const EdgeInsets.fromLTRB(0, 3, 0, 3),
                       child: ListTile(
 
-                          onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => selected(accinfo.allcourse.keys.elementAt(index))));
+                          onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => selected(returncode(filtervalue, index))));
                           },
-                          leading: Image.asset('assets/images/${accinfo.allcourse.keys.elementAt(index)[0]}.jpg'),
+                          leading: Image.asset('assets/images/${returncode(filtervalue, index)[0]}.jpg'),
                           trailing: Icon(Icons.arrow_forward_outlined,color: Colors.black,),
                           tileColor: Colors.grey[70],
                           //shape: RoundedRectangleBorder(
@@ -89,7 +137,7 @@ class _recommendState extends State<recommend> {
                              // side: BorderSide(color: Colors.red,width: 3)
                          // )
                           //,
-                          title: Text("School: ${accinfo.allcourse[accinfo.allcourse.keys.elementAt(index)]["school_name"]} \nCourse: ${accinfo.allcourse[accinfo.allcourse.keys.elementAt(index)]["courseName"]}\nCut-off:${accinfo.allcourse[accinfo.allcourse.keys.elementAt(index)]["courseCutOff"]}")),
+                          title: Text("School: ${returnschool(filtervalue, index)} \nCourse: ${returncourse(filtervalue, index)}\nCut-off:${returncutoff(filtervalue, index)}")),
                     );
                   },
                   separatorBuilder: (context,index) {

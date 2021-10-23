@@ -101,7 +101,7 @@ class _changeemailState extends State<changeemail> {
             child: Padding(
               padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
               child: Text(
-                "Update Account",
+                "Update Email",
                 style: TextStyle(fontSize: 25, color: Colors.black),
               ),
             ),

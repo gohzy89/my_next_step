@@ -64,7 +64,6 @@ class _loginState extends State<login> {
         print(accinfo.email);
         print(accinfo.score_a);
         print(accinfo.interest);
-
         Navigator.push(
           context,
           MaterialPageRoute(
