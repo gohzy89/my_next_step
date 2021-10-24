@@ -17,7 +17,7 @@ class _browseState extends State<browse> {
       case "School":return accinfo.allcourse[accinfo.allcourse.keys.elementAt(index)]["school_name"];
       case 'Cut-Off':return accinfo.allcourse[accinfo.cutofflist[index]]["school_name"];
       case 'Alphabet':return accinfo.allcourse[accinfo.alphabetlist[index]]["school_name"];
-      case 'Location':return accinfo.allcourse[accinfo.allcourse.keys.elementAt(index)]["school_name"];
+
     }
     return "";
   }
@@ -26,7 +26,7 @@ class _browseState extends State<browse> {
       case "School":return accinfo.allcourse[accinfo.allcourse.keys.elementAt(index)]["courseCutOff"];
       case 'Cut-Off':return accinfo.allcourse[accinfo.cutofflist[index]]["courseCutOff"];
       case 'Alphabet':return accinfo.allcourse[accinfo.alphabetlist[index]]["courseCutOff"];
-      case 'Location':return accinfo.allcourse[accinfo.allcourse.keys.elementAt(index)]["courseCutOff"];
+
     }
     return "";
   }
@@ -36,7 +36,7 @@ class _browseState extends State<browse> {
       case "School":return accinfo.allcourse[accinfo.allcourse.keys.elementAt(index)]["courseName"];
       case 'Cut-Off':return accinfo.allcourse[accinfo.cutofflist[index]]["courseName"];
       case 'Alphabet':return accinfo.allcourse[accinfo.alphabetlist[index]]["courseName"];
-      case 'Location':return accinfo.allcourse[accinfo.allcourse.keys.elementAt(index)]["courseName"];
+
     }
     return "";
   }
@@ -45,7 +45,7 @@ class _browseState extends State<browse> {
       case "School":return accinfo.allcourse.keys.elementAt(index);
       case 'Cut-Off':return accinfo.cutofflist[index];
       case 'Alphabet':return accinfo.alphabetlist[index];
-      case 'Location':return accinfo.allcourse.keys.elementAt(index);
+
     }
     return "";
   }
@@ -166,7 +166,7 @@ class _browseState extends State<browse> {
                     filtervalue = newValue!;
                   });
                 },
-                items: <String>['School', 'Cut-Off', 'Alphabet', 'Location']
+                items: <String>['School', 'Cut-Off', 'Alphabet']
                     .map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,

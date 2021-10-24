@@ -11,52 +11,52 @@ class recommend extends StatefulWidget {
 }
 
 class _recommendState extends State<recommend> {
-  String filtervalue = 'School';
+  String filtervalue = 'Recommended';
 
   String returnschool(String value,int index){
     switch(value){
-      case "School":return accinfo.allcourse[accinfo.recommendedlist[index]]["school_name"];
+      case "Recommended":return accinfo.allcourse[accinfo.recommendedlist[index]]["school_name"];
       case 'Cut-Off':return accinfo.allcourse[accinfo.recommendedlistcutoff[index]]["school_name"];
       case 'Alphabet':return accinfo.allcourse[accinfo.recommendedlistalphabet[index]]["school_name"];
-      case 'Location':return accinfo.allcourse[accinfo.recommendedlist[index]]["school_name"];
+      case 'School':return accinfo.allcourse[accinfo.recommendedlist[index]]["school_name"];
     }
     return "";
   }
   String returncutoff(String value,int index){
     switch(value){
-      case "School":return accinfo.allcourse[accinfo.recommendedlist[index]]["courseCutOff"];
+      case "Recommended":return accinfo.allcourse[accinfo.recommendedlist[index]]["courseCutOff"];
       case 'Cut-Off':return accinfo.allcourse[accinfo.recommendedlistcutoff[index]]["courseCutOff"];
       case 'Alphabet':return accinfo.allcourse[accinfo.recommendedlistalphabet[index]]["courseCutOff"];
-      case 'Location':return accinfo.allcourse[accinfo.recommendedlist[index]]["courseCutOff"];
+      case 'School':return accinfo.allcourse[accinfo.recommendedlist[index]]["courseCutOff"];
     }
     return "";
   }
 
   String returncourse(String value,int index){
     switch(value){
-      case "School":return accinfo.allcourse[accinfo.recommendedlist[index]]["courseName"];
+      case "Recommended":return accinfo.allcourse[accinfo.recommendedlist[index]]["courseName"];
       case 'Cut-Off':return accinfo.allcourse[accinfo.recommendedlistcutoff[index]]["courseName"];
       case 'Alphabet':return accinfo.allcourse[accinfo.recommendedlistalphabet[index]]["courseName"];
-      case 'Location':return accinfo.allcourse[accinfo.recommendedlist[index]]["courseName"];
+      case 'School':return accinfo.allcourse[accinfo.recommendedlist[index]]["courseName"];
     }
     return "";
   }
   String returncode(String value,int index){
     switch(value){
-      case "School":return accinfo.recommendedlist[index];
+      case "Recommended":return accinfo.recommendedlist[index];
       case 'Cut-Off':return accinfo.recommendedlistcutoff[index];
       case 'Alphabet':return accinfo.recommendedlistalphabet[index];
-      case 'Location':return accinfo.recommendedlist[index];
+      case 'School':return accinfo.recommendedlist[index];
     }
     return "";
   }
 
   int returnlist(String value){
     switch(value){
-      case "School":return accinfo.recommendedlist.length;
+      case "Recommended":return accinfo.recommendedlist.length;
       case 'Cut-Off':return accinfo.recommendedlistcutoff.length;
       case 'Alphabet':return accinfo.recommendedlistalphabet.length;
-      case 'Location':return accinfo.recommendedlist.length;
+      case 'School':return accinfo.recommendedlist.length;
     }
     return 0;
   }
@@ -102,7 +102,7 @@ class _recommendState extends State<recommend> {
                   filtervalue = newValue!;
                 });
               },
-              items: <String>['School', 'Cut-Off', 'Alphabet', 'Location']
+              items: <String>['Recommended', 'Cut-Off', 'Alphabet', 'School']
                   .map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
