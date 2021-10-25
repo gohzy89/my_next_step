@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:my_next_step/accinfo.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:email_validator/email_validator.dart';
 
 class changeemail extends StatefulWidget {
   const changeemail({Key? key}) : super(key: key);
@@ -25,10 +26,10 @@ class _changeemailState extends State<changeemail> {
       showProgess = true;
     });
 
-    String url = "http://immoral-boilers.000webhostapp.com/updateEmail.php";
+    String url = "http://immoral-boilers.000webhostapp.com/changeEmail.php";
     var response = await http.post(Uri.parse(url), body: {
       "username": accinfo.username,
-      "password": ua_reinpt.text,
+      "email": ua_reinpt.text,
     });
     print(response);
     print("isEmpty: ${response.body.isEmpty.toString()}");
@@ -51,7 +52,8 @@ class _changeemailState extends State<changeemail> {
             content: Text("Update Successful"),
           ));
 
-          //await Future.delayed(Duration(seconds: 1));
+          accinfo.email = ua_reinpt.text;
+          await Future.delayed(Duration(seconds: 1));
 
           Navigator.pop(context);
         }
@@ -125,7 +127,12 @@ class _changeemailState extends State<changeemail> {
                           decoration:
                           const InputDecoration(hintText: 'Recovery Email'),
                           controller: ua_reinpt,
-                          validator: (String? value) {},
+                          validator: (String? value) {
+                            if(!EmailValidator.validate(value)){
+                              return "Invalid Email";
+                            }
+                            return null;
+                          },
                         ),
                       ),
                     ),
@@ -142,7 +149,13 @@ class _changeemailState extends State<changeemail> {
                           decoration: const InputDecoration(
                               hintText: 'Confirm Recovery Email'),
                           controller: ua_creinpt,
-                          validator: (String? value) {},
+                          validator: (String? value) {
+                            if(!EmailValidator.validate(value)){
+                              return "Invalid Email";
+                            }
+                            else if(value != ua_reinpt.text) return "Please enter same email as above";
+                            return null;
+                          },
                         ),
                       ),
                     ),

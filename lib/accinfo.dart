@@ -155,6 +155,7 @@ class accinfo {
   static bool fromsettings = false;
   static bool fromfav = false;
 
+  static String accountID = "";
   static String username = "";
   static String password = "";
   static String email = "";

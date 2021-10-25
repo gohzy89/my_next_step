@@ -4,6 +4,8 @@ import 'package:flutter/rendering.dart';
 import './accinfo.dart';
 import './selectedcourse.dart';
 import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 
 class favourite extends StatefulWidget {
   const favourite({Key? key}) : super(key: key);
@@ -13,6 +15,69 @@ class favourite extends StatefulWidget {
 }
 
 class _favouriteState extends State<favourite> {
+
+
+
+  bool showProgess = false;
+  bool enableWidgets = true;
+
+  Future updateFavourite(int index) async {
+    setState(() {
+      enableWidgets = false;
+      showProgess = true;
+    });
+
+    String url = "http://immoral-boilers.000webhostapp.com/updateFavourites.php";
+    var response = await http.post(Uri.parse(url), body: {
+      "accountId": accinfo.accountID,
+      "courseCode": accinfo.favlist[index],
+    });
+    print(response);
+    print("isEmpty: ${response.body.isEmpty.toString()}");
+
+    if (response.body.isEmpty == true) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Update Failed. Please try again."),
+      ));
+    } else {
+      try {
+        var data = json.decode(response.body);
+        print("data: $data");
+        if (data["result"] == 1) {
+          print("Added");
+          accinfo.favlist.add(accinfo.favlist[index]);
+
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text("Added"),
+          ));
+        } if (data["result"] == 2) {
+
+          print("Removed");
+
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text("Removed"),
+          ));
+
+
+        }
+      } catch (e) {
+        print("Enter catch");
+        print(e);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: const Text("Unexpected error. Please try again."),
+        ));
+      }
+    }
+    setState(() {
+      enableWidgets = true;
+      showProgess = false;
+    });
+  }
+
+
+
+
+
 
   Widget flist(BuildContext context,ScrollController scrollController){
     if(accinfo.favlist.length!=0)
@@ -26,10 +91,10 @@ class _favouriteState extends State<favourite> {
               Navigator.push(context, MaterialPageRoute(builder: (context) => selected(accinfo.favlist[index])));
             },
             leading: IconButton(icon:Icon(Icons.highlight_remove),onPressed: (){
-              accinfo.favlist.removeAt(accinfo.favlist.indexOf(accinfo.favlist[index]));
-              setState(() {
 
-              });
+              updateFavourite(index);
+              accinfo.favlist.removeAt(accinfo.favlist.indexOf(accinfo.favlist[index]));
+
             },),
             trailing: Icon(Icons.arrow_forward_ios_sharp),
             tileColor: Colors.grey[70],

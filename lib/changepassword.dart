@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:crypto/crypto.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +33,7 @@ class _changepasswordState extends State<changepassword> {
       showProgess = true;
     });
 
-    String url = "http://immoral-boilers.000webhostapp.com/updatePassword.php";
+    String url = "http://immoral-boilers.000webhostapp.com/changePassword.php";
     var response = await http.post(Uri.parse(url), body: {
       "username": accinfo.username,
       "password": sha1.convert(utf8.encode(ua_pwinpt.text)).toString() ,
@@ -57,7 +59,8 @@ class _changepasswordState extends State<changepassword> {
             content: Text("Update Successful"),
           ));
 
-          //await Future.delayed(Duration(seconds: 1));
+          accinfo.password = sha1.convert(utf8.encode(ua_pwinpt.text)).toString();
+          await Future.delayed(Duration(seconds: 1));
 
           Navigator.pop(context);
         }
@@ -173,7 +176,35 @@ class _changepasswordState extends State<changepassword> {
                                 },
                               )),
                           controller: ua_pwinpt,
-                          validator: (String? value) {},
+                          onChanged: (value) {
+                            setState(() {
+                              _cformkey.currentState!.validate();
+                            });
+                          },
+                          validator: (String? value) {
+                            if(value!.length<8){
+                              return 'Please enter at least 8 characters';
+                            }
+                            else if(value.contains(' ')){
+                              return 'Please remove space';
+                            }
+                            else if(!value.contains(new RegExp(r'[A-Z]'))){
+                              return 'Please include at least 1 upper alphabet';
+                            }
+                            else if(!value.contains(new RegExp(r'[a-z]'))){
+                              return 'Please include at least 1 lower alphabet';
+                            }
+                            else if(!value.contains(new RegExp(r'[0-9]'))){
+                              return 'Please include at least 1 numeric value';
+                            }
+                            else if (!value.contains(new RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+                              return "Password must contains at least 1 special character";
+                            }
+
+                            return null;
+
+
+                          },
                         ),
                       ),
                     ),
@@ -200,7 +231,32 @@ class _changepasswordState extends State<changepassword> {
                                 },
                               )),
                           controller: ua_cpwinpt,
-                          validator: (String? value) {},
+                          onChanged: (value) {
+                            setState(() {
+                              _cformkey.currentState!.validate();
+                            });
+                          },
+                          validator: (String? value) {if(value!.length<8){
+                            return 'Please enter at least 8 characters';
+                          }
+                          else if(value.contains(' ')){
+                            return 'Please remove space';
+                          }
+                          else if(!value.contains(new RegExp(r'[A-Z]'))){
+                            return 'Please include at least 1 upper alphabet';
+                          }
+                          else if(!value.contains(new RegExp(r'[a-z]'))){
+                            return 'Please include at least 1 lower alphabet';
+                          }
+                          else if(!value.contains(new RegExp(r'[0-9]'))){
+                            return 'Please include at least 1 numeric value';
+                          }
+                          else if (!value.contains(new RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+                            return "Password must contains at least 1 special character";
+                          }else if(value!=ua_pwinpt.text){
+                            return "Not Same Password.";
+                          }
+                          return null;},
                         ),
                       ),
                     ),

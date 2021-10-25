@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:my_next_step/accinfo.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 import './favourites.dart';
 
 class selected extends StatefulWidget {
@@ -32,11 +33,71 @@ class _selectedState extends State<selected> {
 
 
 
+  bool showProgess = false;
+  bool enableWidgets = true;
+
+  Future updateFavourite() async {
+    setState(() {
+      enableWidgets = false;
+      showProgess = true;
+    });
+
+    String url = "http://immoral-boilers.000webhostapp.com/updateFavourites.php";
+    var response = await http.post(Uri.parse(url), body: {
+      "accountId": accinfo.accountID,
+      "courseCode": coursecode,
+    });
+    print(response);
+    print("isEmpty: ${response.body.isEmpty.toString()}");
+
+    if (response.body.isEmpty == true) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Update Failed. Please try again."),
+      ));
+    } else {
+      try {
+        var data = json.decode(response.body);
+        print("data: $data");
+        if (data["result"] == 1) {
+          print("Added");
+          accinfo.favlist.add(coursecode);
+          setState(() {
+            favbtncolor = Colors.yellow;
+          });
+          ScaffoldMessenger.of(context)..removeCurrentSnackBar()..showSnackBar(SnackBar(
+            content: Text("Added"),
+          ));
+        } if (data["result"] == 2) {
+
+          print("Removed");
+          setState(() {
+            accinfo.favlist.removeAt(accinfo.favlist.indexOf(coursecode));
+            favbtncolor = Colors.black;
+          });
+          ScaffoldMessenger.of(context)..removeCurrentSnackBar()..showSnackBar(SnackBar(
+            content: Text("Removed"),
+          ));
+
+
+        }
+      } catch (e) {
+        print("Enter catch");
+        print(e);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: const Text("Unexpected error. Please try again."),
+        ));
+      }
+    }
+    setState(() {
+      enableWidgets = true;
+      showProgess = false;
+    });
+  }
 
 
   @override
-  Widget build(BuildContext context) {
-    return WillPopScope(
+  Widget build(BuildContext context) =>Scaffold(body:
+    WillPopScope(
       onWillPop: () async => false,
       child: Material(
         child: SafeArea(
@@ -75,25 +136,9 @@ class _selectedState extends State<selected> {
                           child: Text(coursename+" ($coursecode)",style: TextStyle(fontSize: 25,),textAlign: TextAlign.center,)),
                       IconButton(
                           onPressed: () {
-                            if(!accinfo.favlist.contains(coursecode)&&accinfo.isloggedin)
-                            {
-                              accinfo.favlist.add(coursecode);
-                            setState(() {
-                              favbtncolor = Colors.yellow;
-                            });
-                            }
-                            else{
-                              if(accinfo.isloggedin)
-                              setState(() {
-                                accinfo.favlist.removeAt(accinfo.favlist.indexOf(coursecode));
-                                favbtncolor = Colors.black;
-                              });
-                            }
-
 
                             //updateFavourite
-
-
+                            updateFavourite();
                             
                           },
                           icon: Icon(
@@ -172,10 +217,16 @@ class _selectedState extends State<selected> {
                         accinfo.fromfav = false;}
                         // pop context
                       })),
+              Center(
+                child: Visibility(
+                  child: CircularProgressIndicator(),
+                  visible: showProgess,
+                ),
+              )
             ],
           ),
         ),
       ),
-    );
+    ));
   }
-}
+

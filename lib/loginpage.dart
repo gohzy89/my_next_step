@@ -49,8 +49,15 @@ class _loginState extends State<login> {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text("Login Successful"),
         ));
+
+
+
+
+
+
         accinfo.isloggedin = true;
         print(lp_uinpt.text);
+        accinfo.accountID = data["accountId"];
         accinfo.username = data["username"];
         accinfo.password = data["password"];
         accinfo.email = data["email"];
@@ -65,6 +72,10 @@ class _loginState extends State<login> {
         print(accinfo.email);
         print(accinfo.score_a);
         print(accinfo.interest);
+
+        await getFavourite();
+
+
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -81,6 +92,57 @@ class _loginState extends State<login> {
       lp_uinpt.text = "";
     });
   }
+
+
+
+  Future getFavourite() async {
+
+    String url = "http://immoral-boilers.000webhostapp.com/getFavouritesById.php";
+    var response = await http.post(Uri.parse(url), body: {
+      "accountId": accinfo.accountID,
+    });
+    print(response);
+    print("favourite isEmpty: ${response.body.isEmpty.toString()}");
+
+    if (response.body.isEmpty == true) {
+
+      print("Receive Failed. Please try again.");
+      // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      //   content: Text("Receive Failed. Please try again."),
+      // ));
+    } else {
+      try {
+        var data = json.decode(response.body);
+        print("data: $data");
+        if (data["result"] == 0) {
+          print("Reason for failing: ${data["reason"]}");
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(data["reason"]),
+          ));
+        } else {
+          // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          //   content: Text("Receive Successful"),
+          // ));
+           print("Received Successful");
+          //accinfo.favlist = data["data"]["courseCode"];
+          print(data["data"]);
+
+          for(int i = 0;i<data["total"];i++ ){
+            accinfo.favlist.add(data["data"][i]["courseCode"]);
+          }
+  }
+    } catch (e) {
+    print("Enter catch");
+    print(e);
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    content: const Text("Unexpected error. Please try again."),
+    ));
+    }
+    }
+
+  }
+
+
 
   @override
   Widget build(BuildContext context) {

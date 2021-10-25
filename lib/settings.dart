@@ -71,6 +71,10 @@ class _settingsState extends State<settings> {
                           ElevatedButton(
                             onPressed: (){
                               accinfo.isloggedin = false;
+
+                              while(accinfo.favlist.isNotEmpty)
+                                accinfo.favlist.removeLast();
+
                               Navigator.pop(context);
                               Navigator.pop(context);
                               if(Navigator.canPop(context))//create account page
