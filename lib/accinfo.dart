@@ -15,7 +15,15 @@ class accinfo {
     "1": "Singapore Polytechnic",
     "2": "Temasek Polytechnic",
     "3": "Ngee Ann Polytechnic",
-    "4": "Nanyang Polytechnic"
+    "4": "Nanyang Polytechnic",
+    'School of Business & Accountancy':"0",
+    'School of Design & Environment':"1",
+    'School of Engineering':"2",
+    'School of Film & Media Studies':"3",
+    'School of Health Sciences':"4",
+    'School of Humanities & Social Sciences':"5",
+    'School of InfoComm Technology':"6",
+    'School of Life Sciences & Chemical Technology':"7",
   };
 
   void mapcourse1(Map map) {
