@@ -93,17 +93,16 @@ class accinfo {
   }
 
   static void  generaterrecommendedlist(){
-    print(allcourse.length);
-    print(score_a);
-    print(score_b);
-    print(score_c);
-    print(score_d);
+
     recommendedlist.removeRange(0, recommendedlist.length);
 
     recommendedlistcutoff.removeRange(0, recommendedlistcutoff.length);
 
     recommendedlistalphabet.removeRange(0, recommendedlistalphabet.length);
 
+    if(score_a==null||score_b==null||score_c==null||score_d==null||interest==null||location==null)
+      return;
+    print(location);
     for(int i=0;i<allcourse.length;i++){
       recommendedlist.add(allcourse.keys.elementAt(i));
       recommendedlistalphabet.add(allcourse[allcourse.keys.elementAt(i)]["courseName"]);

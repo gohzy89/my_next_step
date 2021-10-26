@@ -176,7 +176,6 @@ class _selectedState extends State<selected> {
                             children: [
                               Image.asset(
                                 'assets/images/${accinfo.schools[accinfo.allcourse[coursecode]["courseSchool"]]}.jpg',
-
                               ),
                               Container(
                                   width: MediaQuery.of(context).size.width*0.98,

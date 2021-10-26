@@ -61,6 +61,53 @@ class _recommendState extends State<recommend> {
     return 0;
   }
 
+  Widget preferencesprresent(){
+    if(accinfo.recommendedlist.length!=0)
+      return SizedBox.expand(
+        child: DraggableScrollableSheet(
+          maxChildSize: 0.9,
+          minChildSize: 0.9,
+          initialChildSize: 0.9,
+          builder: (BuildContext context, ScrollController scrollController) {
+            return ListView.separated(
+              controller: scrollController,
+              itemCount: returnlist(filtervalue),
+              itemBuilder: (BuildContext context, int index) {
+                return Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 3, 0, 3),
+                  child: ListTile(
+
+                      onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => selected(returncode(filtervalue, index))));
+                      },
+                      leading: Image.asset('assets/images/${returncode(filtervalue, index)[0]}.jpg'),
+                      trailing: Icon(Icons.arrow_forward_outlined,color: Colors.black,),
+                      tileColor: Colors.grey[70],
+                      //shape: RoundedRectangleBorder(
+                      //borderRadius: BorderRadius.circular(18.0),
+                      // side: BorderSide(color: Colors.red,width: 3)
+                      // )
+                      //,
+                      title: Text("School: ${returnschool(filtervalue, index)} \nCourse: ${returncourse(filtervalue, index)}\nCut-off:${returncutoff(filtervalue, index)}")),
+                );
+              },
+              separatorBuilder: (context,index) {
+                return Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                    height: 1,
+                    color: Colors.grey,
+                  ),
+                );
+              },
+
+            );
+          },
+        ),
+      );
+    return Center(child: Text("Please fill in all preferences"));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -113,48 +160,7 @@ class _recommendState extends State<recommend> {
               ,color: Colors.white,),
           ),
 
-          SizedBox.expand(
-            child: DraggableScrollableSheet(
-              maxChildSize: 0.9,
-              minChildSize: 0.9,
-              initialChildSize: 0.9,
-              builder: (BuildContext context, ScrollController scrollController) {
-                return ListView.separated(
-                  controller: scrollController,
-                  itemCount: returnlist(filtervalue),
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 3, 0, 3),
-                      child: ListTile(
-
-                          onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => selected(returncode(filtervalue, index))));
-                          },
-                          leading: Image.asset('assets/images/${returncode(filtervalue, index)[0]}.jpg'),
-                          trailing: Icon(Icons.arrow_forward_outlined,color: Colors.black,),
-                          tileColor: Colors.grey[70],
-                          //shape: RoundedRectangleBorder(
-                              //borderRadius: BorderRadius.circular(18.0),
-                             // side: BorderSide(color: Colors.red,width: 3)
-                         // )
-                          //,
-                          title: Text("School: ${returnschool(filtervalue, index)} \nCourse: ${returncourse(filtervalue, index)}\nCut-off:${returncutoff(filtervalue, index)}")),
-                    );
-                  },
-                  separatorBuilder: (context,index) {
-                    return Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                      child: Container(
-                        padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                        height: 1,
-                        color: Colors.grey,
-                      ),
-                    );
-                  },
-
-                );
-              },
-            ),
-          ),
+          preferencesprresent(),
         ]),
       ),
     );
