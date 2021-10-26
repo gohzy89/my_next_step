@@ -49,7 +49,7 @@ class _selectedState extends State<selected> {
     });
     print(response);
     print("isEmpty: ${response.body.isEmpty.toString()}");
-
+    print(response.body);
     if (response.body.isEmpty == true) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Update Failed. Please try again."),

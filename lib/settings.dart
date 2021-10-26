@@ -75,6 +75,25 @@ class _settingsState extends State<settings> {
                               while(accinfo.favlist.isNotEmpty)
                                 accinfo.favlist.removeLast();
 
+                              while(accinfo.recommendedlist.isNotEmpty)
+                              {
+                                accinfo.recommendedlist.removeLast();
+                                accinfo.recommendedlistcutoff.removeLast();
+                                accinfo.recommendedlistalphabet.removeLast();
+                              }
+
+
+                                accinfo.accountID = "";
+                                accinfo.username = "";
+                                accinfo.password = "";
+                                accinfo.email = "";
+                                accinfo.score_a = "";
+                                accinfo.score_b = "";
+                                accinfo.score_c = "";
+                                accinfo.score_d = "";
+                                accinfo.interest = "";
+                                accinfo.location = "";
+
                               Navigator.pop(context);
                               Navigator.pop(context);
                               if(Navigator.canPop(context))//create account page

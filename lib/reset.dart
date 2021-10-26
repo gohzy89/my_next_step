@@ -24,27 +24,30 @@ class _resetState extends State<reset> {
 
     String url = "http://immoral-boilers.000webhostapp.com/resetPassword.php";
     var response = await http.post(Uri.parse(url), body: {
-      //"username": accinfo.username,
       "email": rp_einpt.text,
     });
     print(response);
     print("isEmpty: ${response.body.isEmpty.toString()}");
 
     if (response.body.isEmpty == true) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context)..removeCurrentSnackBar()..showSnackBar(SnackBar(
         content: Text("Reset Failed. Please try again."),
       ));
     } else {
       try {
-        var data = json.decode(response.body);
+        print(response.body.substring(0,response.body.indexOf('}')+1));
+        var data = json.decode(response.body.substring(0,response.body.indexOf('}')+1));
+        print("decode successfully");
         print("data: $data");
+        //print("data: ${data["result"]}");
         if (data["result"] == 0) {
+          print("enter result = 0");
           print("Reason for failing: ${data["reason"]}");
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          ScaffoldMessenger.of(context)..removeCurrentSnackBar()..showSnackBar(SnackBar(
             content: Text(data["reason"]),
           ));
         } else {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          ScaffoldMessenger.of(context)..removeCurrentSnackBar()..showSnackBar(SnackBar(
             content: Text("Update Successful"),
           ));
 
@@ -55,7 +58,7 @@ class _resetState extends State<reset> {
       } catch (e) {
         print("Enter catch");
         print(e);
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context)..removeCurrentSnackBar()..showSnackBar(SnackBar(
           content: const Text("Unexpected error. Please try again."),
         ));
       }
@@ -69,8 +72,8 @@ class _resetState extends State<reset> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Material(
-      child: AbsorbPointer(
+    return Scaffold(
+      body: AbsorbPointer(
         absorbing: !enableWidgets,
         child: SafeArea(
           child: Stack(children: [
@@ -136,6 +139,12 @@ class _resetState extends State<reset> {
                 ],
               ),
             ),
+            Center(
+              child: Visibility(
+                child: CircularProgressIndicator(),
+                visible: showProgess,
+              ),
+            )
           ]),
         ),
       ),
