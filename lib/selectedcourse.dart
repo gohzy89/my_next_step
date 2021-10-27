@@ -131,7 +131,7 @@ class _selectedState extends State<selected> {
                   Row(
                     children: [
                       Container(
-                          height: MediaQuery.of(context).size.width * 0.2,
+                          height: MediaQuery.of(context).size.width * 0.25,
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: Text(coursename+" ($coursecode)\n"+"Cutoff:"+accinfo.allcourse[coursecode]["courseCutOff"],style: TextStyle(fontSize: 25,),textAlign: TextAlign.center,)),
                       IconButton(
@@ -162,7 +162,7 @@ class _selectedState extends State<selected> {
                     ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.65,
+                    height: MediaQuery.of(context).size.height * 0.60,
                     width: MediaQuery.of(context).size.width,
                     child: DraggableScrollableSheet(
                         maxChildSize: 1,
