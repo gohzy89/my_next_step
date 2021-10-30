@@ -17,8 +17,8 @@ class _recommendState extends State<recommend> {
     switch(value){
       case "Recommended":return accinfo.allcourse[accinfo.recommendedlist[index]]["school_name"];
       case 'Cut-Off':return accinfo.allcourse[accinfo.recommendedlistcutoff[index]]["school_name"];
-      case 'Alphabet':return accinfo.allcourse[accinfo.recommendedlistalphabet[index]]["school_name"];
-      case 'School':return accinfo.allcourse[accinfo.recommendedlist[index]]["school_name"];
+      case 'Alphabetical':return accinfo.allcourse[accinfo.recommendedlistalphabet[index]]["school_name"];
+      case 'School':return accinfo.allcourse[accinfo.recommendedlistschool[index]]["school_name"];
     }
     return "";
   }
@@ -26,8 +26,8 @@ class _recommendState extends State<recommend> {
     switch(value){
       case "Recommended":return accinfo.allcourse[accinfo.recommendedlist[index]]["courseCutOff"];
       case 'Cut-Off':return accinfo.allcourse[accinfo.recommendedlistcutoff[index]]["courseCutOff"];
-      case 'Alphabet':return accinfo.allcourse[accinfo.recommendedlistalphabet[index]]["courseCutOff"];
-      case 'School':return accinfo.allcourse[accinfo.recommendedlist[index]]["courseCutOff"];
+      case 'Alphabetical':return accinfo.allcourse[accinfo.recommendedlistalphabet[index]]["courseCutOff"];
+      case 'School':return accinfo.allcourse[accinfo.recommendedlistschool[index]]["courseCutOff"];
     }
     return "";
   }
@@ -36,8 +36,8 @@ class _recommendState extends State<recommend> {
     switch(value){
       case "Recommended":return accinfo.allcourse[accinfo.recommendedlist[index]]["courseName"];
       case 'Cut-Off':return accinfo.allcourse[accinfo.recommendedlistcutoff[index]]["courseName"];
-      case 'Alphabet':return accinfo.allcourse[accinfo.recommendedlistalphabet[index]]["courseName"];
-      case 'School':return accinfo.allcourse[accinfo.recommendedlist[index]]["courseName"];
+      case 'Alphabetical':return accinfo.allcourse[accinfo.recommendedlistalphabet[index]]["courseName"];
+      case 'School':return accinfo.allcourse[accinfo.recommendedlistschool[index]]["courseName"];
     }
     return "";
   }
@@ -45,8 +45,8 @@ class _recommendState extends State<recommend> {
     switch(value){
       case "Recommended":return accinfo.recommendedlist[index];
       case 'Cut-Off':return accinfo.recommendedlistcutoff[index];
-      case 'Alphabet':return accinfo.recommendedlistalphabet[index];
-      case 'School':return accinfo.recommendedlist[index];
+      case 'Alphabetical':return accinfo.recommendedlistalphabet[index];
+      case 'School':return accinfo.recommendedlistschool[index];
     }
     return "";
   }
@@ -55,8 +55,8 @@ class _recommendState extends State<recommend> {
     switch(value){
       case "Recommended":return accinfo.recommendedlist.length;
       case 'Cut-Off':return accinfo.recommendedlistcutoff.length;
-      case 'Alphabet':return accinfo.recommendedlistalphabet.length;
-      case 'School':return accinfo.recommendedlist.length;
+      case 'Alphabetical':return accinfo.recommendedlistalphabet.length;
+      case 'School':return accinfo.recommendedlistschool.length;
     }
     return 0;
   }
@@ -149,7 +149,7 @@ class _recommendState extends State<recommend> {
                   filtervalue = newValue!;
                 });
               },
-              items: <String>['Recommended', 'Cut-Off', 'Alphabet', 'School']
+              items: <String>['Recommended', 'Cut-Off', 'Alphabetical', 'School']
                   .map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,

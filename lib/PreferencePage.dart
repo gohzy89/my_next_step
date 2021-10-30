@@ -15,7 +15,13 @@ class _PreferencePageState extends State<PreferencePage> {
 
   bool showProgess = false;
   bool enableWidgets = true;
-  List selectedInterests = accinfo.interest.split(",");
+  List selectedInterests = checker();
+
+  static List checker(){
+    if(accinfo.interest!=""&&accinfo.interest!=null)
+      {return accinfo.interest.split(",");}
+    return ["Engineering"];
+  }
 
   Future update() async {
     setState(() {
@@ -160,14 +166,14 @@ class _PreferencePageState extends State<PreferencePage> {
                                     },
                                     value: selectedInterests[index],
                                     items: <String>[
-                                      'School of Business & Accountancy',
-                                      'School of Design & Environment',
-                                      'School of Engineering',
-                                      'School of Film & Media Studies',
-                                      'School of Health Sciences',
-                                      'School of Humanities & Social Sciences',
-                                      'School of InfoComm Technology',
-                                      'School of Life Sciences & Chemical Technology',
+                                      'Business & Accountancy',
+                                      'Design & Environment',
+                                      'Engineering',
+                                      'Film & Media Studies',
+                                      'Health Sciences',
+                                      'Humanities & Social Sciences',
+                                      'InfoComm Technology',
+                                      'Life Sciences & Chemical Technology',
                                     ].map<DropdownMenuItem<String>>(
                                             (String value) {
                                           return DropdownMenuItem<String>(
@@ -192,7 +198,7 @@ class _PreferencePageState extends State<PreferencePage> {
                           onPressed: () {
                             setState(() {
                               if (selectedInterests.length < 3) selectedInterests
-                                  .add(null);;
+                                  .add(null);
                             });
                           },
                           child: Icon(

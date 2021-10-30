@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import './loginpage.dart';
 import './settings.dart';
+import './PreferencePage.dart';
 import './recommended.dart';
 import './accinfo.dart';
 import './favourites.dart';

@@ -20,8 +20,27 @@ class _InputSubjectsPageState extends State<InputSubjectsPage> {
   String cutOff = accinfo.cca_points;
   List scores = List.filled(4, 0, growable: false);
 
-  List selectedSubjectValues = accinfo.selectedSubjectValues.split("*");
-  List selectedGradeValues = accinfo.selectedGradeValues.split("*");
+  List selectedSubjectValues = subjectchecker();
+  List selectedGradeValues = gradechecker();
+
+  static List subjectchecker(){
+    if(accinfo.selectedSubjectValues!="")
+      return accinfo.selectedSubjectValues.split("*");
+    return [                                      'English Language',
+      'Art/Art & Design',
+      'Business Studies',
+      'Combined Humanities',
+      'Commerce'];
+  }
+  static List gradechecker(){
+    if(accinfo.selectedGradeValues!="")
+      return accinfo.selectedGradeValues.split("*");
+    return [                                      'A1',
+    'A2',
+    'B3',
+    'B4',
+    'C5'];
+  }
 
 
 

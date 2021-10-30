@@ -133,7 +133,7 @@ class _selectedState extends State<selected> {
                       Container(
                           height: MediaQuery.of(context).size.width * 0.25,
                           width: MediaQuery.of(context).size.width * 0.8,
-                          child: Text(coursename+" ($coursecode)\n"+"Cutoff:"+accinfo.allcourse[coursecode]["courseCutOff"],style: TextStyle(fontSize: 25,),textAlign: TextAlign.center,)),
+                          child: Center(child: Text(coursename+" ($coursecode)\n"+"Cutoff:"+accinfo.allcourse[coursecode]["courseCutOff"],style: TextStyle(fontSize: 20,),textAlign: TextAlign.center,))),
                       IconButton(
                           onPressed: () {
 
@@ -175,7 +175,7 @@ class _selectedState extends State<selected> {
                         child: Column(
                             children: [
                               Image.asset(
-                                'assets/images/${accinfo.schools[accinfo.allcourse[coursecode]["courseSchool"]]}.jpg',
+                                'assets/images/${accinfo.schools[accinfo.schools[accinfo.allcourse[coursecode]["courseSchool"].toLowerCase()]]}.jpg',
                               ),
                               Container(
                                   width: MediaQuery.of(context).size.width*0.98,

@@ -16,7 +16,13 @@ class _LocationPageState extends State<LocationPage> {
 
   List<String> locations = ['North', 'South', 'East', 'West', 'Central'];
 
-  String dropdownValue = ['North', 'South', 'East', 'West', 'Central'].elementAt(int.parse(accinfo.location));
+  String dropdownValue = ['North', 'South', 'East', 'West', 'Central'][locationvalue()];
+
+  static int locationvalue(){
+    if(accinfo.location!=null&&accinfo.location!="")
+      return int.parse(accinfo.location);
+    return 0;
+  }
 
   Future update() async {
     setState(() {
