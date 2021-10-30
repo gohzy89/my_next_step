@@ -16,14 +16,46 @@ class accinfo {
     "2": "Temasek Polytechnic",
     "3": "Ngee Ann Polytechnic",
     "4": "Nanyang Polytechnic",
-    'School of Business & Accountancy':"0",
-    'School of Design & Environment':"1",
-    'School of Engineering':"2",
-    'School of Film & Media Studies':"3",
-    'School of Health Sciences':"4",
-    'School of Humanities & Social Sciences':"5",
-    'School of InfoComm Technology':"6",
-    'School of Life Sciences & Chemical Technology':"7",
+    'Business & Accountancy':"0",
+    'Design & Environment':"1",
+    'Engineering':"2",
+    'Film & Media Studies':"3",
+    'Health Sciences':"4",
+    'Humanities & Social Sciences':"5",
+    'InfoComm Technology':"6",
+    'Life Sciences & Chemical Technology':"7",
+
+    'school of business & accountancy':'Business & Accountancy',
+    'school of design & environment':'Design & Environment',
+    'school of engineering':'Engineering',
+    'school of film & media studies':'Film & Media Studies',
+    'school of health sciences':'Health Sciences',
+    'school of humanities & social sciences':'Humanities & Social Sciences',
+    'school of infocomm technology':'InfoComm Technology',
+    'school of life sciences & chemical technology':'Life Sciences & Chemical Technology',
+
+    'school of business & management':'Business & Accountancy',
+    'school of media & design':'Film & Media Studies',
+    'school of information & digital technologies':'InfoComm Technology',
+    'school of applied science':'Life Sciences & Chemical Technology',
+
+    'school of management and communication':'Business & Accountancy',
+    'school of technology for the arts':'Design & Environment',
+    'school of hospitality':'Humanities & Social Sciences',
+    'school of sports, health and leisure':'Humanities & Social Sciences',
+    'school of infocomm':'InfoComm Technology',
+
+    'school of business':'Business & Accountancy',
+    'school of design':'Design & Environment',
+    'school of information and & it':'InfoComm Technology',
+
+    'business management':'Business & Accountancy',
+    'built environment':'Design & Environment',
+    'engineering':'Engineering',
+    'media and design':'Film & Media Studies',
+    'maritime studies':'Humanities & Social Sciences',
+    'information & digital technologies':'InfoComm Technology',
+    'applied sciences':'Life Sciences & Chemical Technology',
   };
 
   void mapcourse1(Map map) {
@@ -100,11 +132,14 @@ class accinfo {
 
     recommendedlistalphabet.removeRange(0, recommendedlistalphabet.length);
 
+    recommendedlistschool.removeRange(0, recommendedlistschool.length);
+
     if(score_a==null||score_b==null||score_c==null||score_d==null||interest==null||location==null)
       return;
 
     for(int i=0;i<allcourse.length;i++){
       recommendedlist.add(allcourse.keys.elementAt(i));
+      recommendedlistschool.add(allcourse.keys.elementAt(i));
       recommendedlistalphabet.add(allcourse[allcourse.keys.elementAt(i)]["courseName"]);
     }
 
@@ -113,21 +148,25 @@ class accinfo {
       switch(allcourse[recommendedlist[i]]["ELR2B2_Type"][7]){
         case "A":if(int.parse(allcourse[recommendedlist[i]]["courseCutOff"])<int.parse(score_a)) {
             recommendedlist.removeAt(i);
+            recommendedlistschool.removeAt(i);
             recommendedlistalphabet.removeAt(i);
           }
           break;
         case "B":if(int.parse(allcourse[recommendedlist[i]]["courseCutOff"])<int.parse(score_b)) {
             recommendedlist.removeAt(i);
+            recommendedlistschool.removeAt(i);
             recommendedlistalphabet.removeAt(i);
           }
           break;
         case "C":if(int.parse(allcourse[recommendedlist[i]]["courseCutOff"])<int.parse(score_c)) {
             recommendedlist.removeAt(i);
+            recommendedlistschool.removeAt(i);
             recommendedlistalphabet.removeAt(i);
           }
           break;
         case "D":if(int.parse(allcourse[recommendedlist[i]]["courseCutOff"])<int.parse(score_d)) {
             recommendedlist.removeAt(i);
+            recommendedlistschool.removeAt(i);
             recommendedlistalphabet.removeAt(i);
           }
           break;
@@ -138,16 +177,21 @@ class accinfo {
 
     for(int i=0;i<recommendedlist.length;i++){
       inserttocutoff1(recommendedlist[i]);
-      if(allcourse[recommendedlist[i]]["courseSchool"]==interest) {
+      for(int j=0;j<interest.split(",").length;j++)
+      {String schoolname = schools[allcourse[recommendedlist[i]]["courseSchool"].toLowerCase()];
+      if(schoolname==interest.split(",")[j]) {
         recommendedlist.insert(0, recommendedlist[i]);
         recommendedlist.removeAt(i+1);
-      }
+      }}
     }
+
     for(int i=0;i<recommendedlist.length;i++){
-      if(allcourse[recommendedlist[i]]["courseSchool"]==interest&&allcourse[recommendedlist[i]]["school_name"]==schools[location]) {
+      for(int j=0;j<interest.split(",").length;j++)
+      {String schoolname = schools[allcourse[recommendedlist[i]]["courseSchool"].toLowerCase()];
+        if(schoolname==interest.split(",")[j]&&allcourse[recommendedlist[i]]["school_name"]==schools[location]) {
         recommendedlist.insert(0, recommendedlist[i]);
         recommendedlist.removeAt(i+1);
-      }
+      }}
     }
 
   }
@@ -158,6 +202,7 @@ class accinfo {
   static List<String> recommendedlist = [];
   static List<String> recommendedlistcutoff = [];
   static List<String> recommendedlistalphabet = [];
+  static List<String> recommendedlistschool = [];
 
 
   static bool isloggedin = false;
@@ -173,7 +218,7 @@ class accinfo {
   static String score_c = "";
   static String score_d = "";
   static String interest = "";
-  static String location = "";
+  static String location = "0";
   static String selectedSubjectValues = "";
   static String selectedGradeValues = "";
 }

@@ -21,7 +21,7 @@ class _SplashState extends State<Splash> {
 
   Future<void> fetchCourse() async {
 
-    var result1 = await http.get(apiUrl1);
+    var result1 = await http.get(Uri.parse(apiUrl1));
     setState(() {
       accinfo().mapcourse1(json.decode(result1.body));
     });
@@ -43,6 +43,7 @@ class _SplashState extends State<Splash> {
   }
   @override
   Widget build(BuildContext context) {
+
     return Container(
       child: Image.asset('assets/images/home.jpg'),
       color: Colors.white,
