@@ -46,6 +46,8 @@ class _settingsState extends State<settings> {
     accinfo.score_d = "";
     accinfo.interest = "";
     accinfo.location = "";
+    accinfo.selectedSubjectValues = "";
+    accinfo.selectedGradeValues = "";
 
     await Future.delayed(Duration(seconds: 1));
     Navigator.pop(context);
