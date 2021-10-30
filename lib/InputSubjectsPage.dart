@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:my_next_step/PreferencePage.dart';
-import 'package:my_next_step/accinfo.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:my_next_step/selectedcourse.dart';
 
+import 'dart:convert';
+import 'accinfo.dart';
 import 'controller.dart';
 
 class InputSubjectsPage extends StatefulWidget {
@@ -18,20 +19,9 @@ class _InputSubjectsPageState extends State<InputSubjectsPage> {
 
   String cutOff = "0";
   List scores = List.filled(4, 0, growable: false);
-  List selectedSubjectValues = [
-    'English Language',
-    'Elementary Mathematics',
-    'Additional Mathematics',
-    'Science (Chem, Bio)',
-    'Humanities (Social Studies, History)',
-  ];
-  List selectedGradeValues = [
-    'A1',
-    'A2',
-    'B3',
-    'B4',
-    'C5',
-  ];
+
+  List selectedSubjectValues = accinfo.selectedSubjectValues.split("*");
+  List selectedGradeValues = accinfo.selectedGradeValues.split("*");
 
 
 
@@ -48,12 +38,14 @@ class _InputSubjectsPageState extends State<InputSubjectsPage> {
       "score_a": scores[0].toString(),
       "score_b": scores[1].toString(),
       "score_c": scores[2].toString(),
-      "score_d": scores[3].toString()
+      "score_d": scores[3].toString(),
+      "selected_subjects": selectedSubjectValues.join("*"),
+      "selected_grades": selectedGradeValues.join("*"),
     });
 
-    // print(response);
+    //print(response);
     // print("isEmpty: ${response.body.isEmpty.toString()}");
-    // print(response.body);
+     print(response.body);
     if (response.body.isEmpty == true) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Update Failed. Please try again."),
@@ -80,6 +72,9 @@ class _InputSubjectsPageState extends State<InputSubjectsPage> {
           accinfo.score_c = scores[2].toString();
           accinfo.score_d = scores[3].toString();
 
+          accinfo.selectedSubjectValues = selectedSubjectValues.join("*");
+          accinfo.selectedGradeValues = selectedGradeValues.join("*");
+
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text("Update Successful")));
           //await Future.delayed(Duration(seconds: 1));
@@ -88,18 +83,20 @@ class _InputSubjectsPageState extends State<InputSubjectsPage> {
         }
       } catch (e) {
         // print("Enter catch");
-        // print(e);
+        print(e);
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: const Text("Unexpected error. Please try again."),
         ));
       }
     }
-
     setState(() {
       showProgess = false;
       enableWidgets = true;
     });
   }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -155,6 +152,9 @@ class _InputSubjectsPageState extends State<InputSubjectsPage> {
                       int.parse(cutOff);
 
                   print(scores);
+
+                  print(selectedSubjectValues.join("*"));
+                  print(selectedGradeValues.join("*"));
 
 
                   update();

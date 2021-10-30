@@ -15,7 +15,7 @@ class _PreferencePageState extends State<PreferencePage> {
 
   bool showProgess = false;
   bool enableWidgets = true;
-  List selectedInterests = ['School of Engineering'];
+  List selectedInterests = accinfo.interest.split(",");
 
   Future update() async {
     setState(() {

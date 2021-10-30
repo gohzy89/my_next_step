@@ -11,11 +11,12 @@ class LocationPage extends StatefulWidget {
 class _LocationPageState extends State<LocationPage> {
   int size = 1;
   bool showProgess = false;
-  String dropdownValue = "North";
+
   bool enableWidgets = true;
 
   List<String> locations = ['North', 'South', 'East', 'West', 'Central'];
 
+  String dropdownValue = ['North', 'South', 'East', 'West', 'Central'].elementAt(int.parse(accinfo.location));
 
   Future update() async {
     setState(() {

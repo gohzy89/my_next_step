@@ -67,6 +67,27 @@ class _loginState extends State<login> {
         accinfo.score_d = data["score_d"];
         accinfo.interest = data["interest"];
         accinfo.location = data["location"];
+
+        if(data["selected_subjects"]==null){
+          accinfo.selectedSubjectValues = [
+            'English Language',
+            'Elementary Mathematics',
+            'Additional Mathematics',
+            'Science (Chem, Bio)',
+            'Humanities (Social Studies, History)',
+          ].join("*");
+              accinfo.selectedGradeValues = [
+                'A1',
+                'A2',
+                'B3',
+                'B4',
+                'C5',
+              ].join("*");
+        }else{
+          accinfo.selectedSubjectValues = data["selected_subjects"];
+          accinfo.selectedGradeValues = data["selected_grades"];
+        }
+
         print(accinfo.username);
         print(accinfo.password);
         print(accinfo.email);

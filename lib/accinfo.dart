@@ -158,6 +158,8 @@ class accinfo {
   static List<String> recommendedlist = [];
   static List<String> recommendedlistcutoff = [];
   static List<String> recommendedlistalphabet = [];
+
+
   static bool isloggedin = false;
   static bool fromsettings = false;
   static bool fromfav = false;
@@ -172,4 +174,6 @@ class accinfo {
   static String score_d = "";
   static String interest = "";
   static String location = "";
+  static String selectedSubjectValues = "";
+  static String selectedGradeValues = "";
 }
