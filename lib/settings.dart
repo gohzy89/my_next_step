@@ -22,7 +22,6 @@ class _settingsState extends State<settings> {
       showProgess = true;
     });
 
-
     accinfo.isloggedin = false;
 
     while(accinfo.favlist.isNotEmpty)
@@ -34,7 +33,6 @@ class _settingsState extends State<settings> {
       accinfo.recommendedlistcutoff.removeLast();
       accinfo.recommendedlistalphabet.removeLast();
     }
-
 
     accinfo.accountID = "";
     accinfo.username = "";
@@ -48,6 +46,7 @@ class _settingsState extends State<settings> {
     accinfo.location = "";
     accinfo.selectedSubjectValues = "";
     accinfo.selectedGradeValues = "";
+    accinfo.cca_points = "";
 
     await Future.delayed(Duration(seconds: 1));
     Navigator.pop(context);
@@ -55,14 +54,11 @@ class _settingsState extends State<settings> {
     if(Navigator.canPop(context))//create account page
       Navigator.pop(context);
 
-
     setState(() {
       enableWidgets = true;
       showProgess = false;
     });
   }
-
-
 
   @override
   Widget build(BuildContext context) {

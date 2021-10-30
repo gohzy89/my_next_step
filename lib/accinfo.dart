@@ -27,6 +27,7 @@ class accinfo {
   };
 
   void mapcourse1(Map map) {
+
     for (int i = 0; i < map['total']; i++) {
       allcourse[map['data'][i]["courseCode"]] = map['data'][i];
       allcourse[map['data'][i]["courseCode"]]["school_name"] =
@@ -35,6 +36,7 @@ class accinfo {
       alphabetlist.add(allcourse[map['data'][i]["courseCode"]]["courseName"]);
     }
     sortalphabetlist();
+
   }
 
   void inserttocutoff(String code) {
@@ -176,4 +178,5 @@ class accinfo {
   static String location = "";
   static String selectedSubjectValues = "";
   static String selectedGradeValues = "";
+  static String cca_points = "";
 }

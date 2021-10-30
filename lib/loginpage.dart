@@ -67,6 +67,7 @@ class _loginState extends State<login> {
         accinfo.score_d = data["score_d"];
         accinfo.interest = data["interest"];
         accinfo.location = data["location"];
+        accinfo.cca_points = data["cca_points"];
 
         if(data["selected_subjects"]==null){
           accinfo.selectedSubjectValues = [

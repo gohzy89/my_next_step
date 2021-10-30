@@ -17,7 +17,7 @@ class _InputSubjectsPageState extends State<InputSubjectsPage> {
   bool showProgess = false;
   bool enableWidgets = true;
 
-  String cutOff = "0";
+  String cutOff = accinfo.cca_points;
   List scores = List.filled(4, 0, growable: false);
 
   List selectedSubjectValues = accinfo.selectedSubjectValues.split("*");
@@ -41,6 +41,7 @@ class _InputSubjectsPageState extends State<InputSubjectsPage> {
       "score_d": scores[3].toString(),
       "selected_subjects": selectedSubjectValues.join("*"),
       "selected_grades": selectedGradeValues.join("*"),
+      "cca_points": cutOff.toString()
     });
 
     //print(response);
@@ -355,7 +356,7 @@ class _InputSubjectsPageState extends State<InputSubjectsPage> {
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Row(children: [
-                    Text("Cut Off Point:", style: TextStyle(fontSize: 20),),
+                    Text("CCA Points:", style: TextStyle(fontSize: 20),),
                     Container(
                       //width: MediaQuery.of(context).size.width * 0.30,
                       padding: EdgeInsets.symmetric(horizontal: 10.0),

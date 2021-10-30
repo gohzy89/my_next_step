@@ -242,7 +242,6 @@ int computeELR2B2_B(List selectedSubjectValues, List selectedGradeValues) {
     if (R2.contains(element)) minR2.add(element);
   });
 
-  print(minR2);
 
   if(minR2.isEmpty){
     return 50;
