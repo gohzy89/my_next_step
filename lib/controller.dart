@@ -52,6 +52,10 @@ int computeELR2B2_A(List selectedSubjectValues, List selectedGradeValues) {
 
   print(minR1);
 
+  if(minR1.isEmpty){
+    return 50;
+  }
+
   int min = 10;
   var minR1Subject;
   minR1.forEach((element) {
@@ -113,6 +117,10 @@ int computeELR2B2_A(List selectedSubjectValues, List selectedGradeValues) {
   });
 
   print(minR2);
+
+  if(minR2.isEmpty){
+    return 50;
+  }
 
   int min2 = 10;
   var minR2Subject;
@@ -182,6 +190,10 @@ int computeELR2B2_B(List selectedSubjectValues, List selectedGradeValues) {
 
   print(minR1);
 
+  if(minR1.isEmpty){
+    return 50;
+  }
+
   int min = 10;
   var minR1Subject;
   minR1.forEach((element) {
@@ -231,6 +243,10 @@ int computeELR2B2_B(List selectedSubjectValues, List selectedGradeValues) {
   });
 
   print(minR2);
+
+  if(minR2.isEmpty){
+    return 50;
+  }
 
   int min2 = 10;
   var minR2Subject;
@@ -286,12 +302,18 @@ int computeELR2B2_C(List selectedSubjectValues, List selectedGradeValues) {
       selectedGradeValues[duplicateSubjects.indexOf('English Language')]
       [1]); //find english grade and add to score
 
+
+
   duplicateSubjects.removeAt(duplicateSubjects.indexOf('English Language'));
+
+
+
 
   List R1 = [
     'Additional Mathematics',
     'Elementary Mathematics',
   ];
+
 
   List minR1 = [];
   duplicateSubjects.forEach((element) {
@@ -299,6 +321,12 @@ int computeELR2B2_C(List selectedSubjectValues, List selectedGradeValues) {
   });
 
   print(minR1);
+
+  if(minR1.isEmpty){
+    return 50;
+  }
+
+
 
   int min = 10;
   var minR1Subject;
@@ -344,6 +372,11 @@ int computeELR2B2_C(List selectedSubjectValues, List selectedGradeValues) {
   });
 
   print(minR2);
+
+
+  if(minR2.isEmpty){
+    return 50;
+  }
 
   int min2 = 10;
   var minR2Subject;
@@ -413,6 +446,10 @@ int computeELR2B2_D(List selectedSubjectValues, List selectedGradeValues) {
 
   print(minR1);
 
+  if(minR1.isEmpty){
+    return 50;
+  }
+
   int min = 10;
   var minR1Subject;
   minR1.forEach((element) {
@@ -462,6 +499,10 @@ int computeELR2B2_D(List selectedSubjectValues, List selectedGradeValues) {
   });
 
   print(minR2);
+
+  if(minR2.isEmpty){
+    return 50;
+  }
 
   int min2 = 10;
   var minR2Subject;
