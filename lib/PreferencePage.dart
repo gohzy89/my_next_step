@@ -17,9 +17,21 @@ class _PreferencePageState extends State<PreferencePage> {
   bool enableWidgets = true;
   List selectedInterests = checker();
 
+
   static List checker(){
     if(accinfo.interest!=""&&accinfo.interest!=null)
-      {return accinfo.interest.split(",");}
+      {
+        if(accinfo.interest.split(",").elementAt(0).contains("School of "))
+          {
+            List list = [];
+            for(int i = 0;i<accinfo.interest.split(",").length;i++){
+              list.add(accinfo.interest.split(",").elementAt(i).replaceAll("School of ", ""));
+            }
+            return list;
+
+          }
+
+        return accinfo.interest.split(",");}
     return ["Engineering"];
   }
 
