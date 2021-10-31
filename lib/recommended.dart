@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_next_step/accinfo.dart';
 import './selectedcourse.dart';
@@ -62,8 +63,10 @@ class _recommendState extends State<recommend> {
   }
 
   Widget preferencesprresent(){
-    if(accinfo.recommendedlist.length!=0)
-      return SizedBox.expand(
+    if(accinfo.score_a!=null||accinfo.score_b!=null||accinfo.score_c!=null||accinfo.score_d!=null||accinfo.interest!=null||accinfo.location!=null)
+{ if(accinfo.recommendedlist.length==0)
+  return Center(child: Text("No courses to recommend\nPlease change your preferences",textAlign: TextAlign.center,));
+  return SizedBox.expand(
         child: DraggableScrollableSheet(
           maxChildSize: 0.9,
           minChildSize: 0.9,
@@ -104,7 +107,7 @@ class _recommendState extends State<recommend> {
             );
           },
         ),
-      );
+      );}
     return Center(child: Text("Please fill in all preferences"));
   }
 
