@@ -17,11 +17,22 @@ class _InputSubjectsPageState extends State<InputSubjectsPage> {
   bool showProgess = false;
   bool enableWidgets = true;
 
-  String cutOff = accinfo.cca_points;
+  String cutOff = cutOffChecker();
+
+
   List scores = List.filled(4, 0, growable: false);
 
   List selectedSubjectValues = subjectchecker();
   List selectedGradeValues = gradechecker();
+
+
+  static String cutOffChecker(){
+    print(accinfo.cca_points);
+    if(accinfo.cca_points!=null)
+      return accinfo.cca_points;
+    return '0';
+  }
+
 
   static List subjectchecker(){
     if(accinfo.selectedSubjectValues!="")
