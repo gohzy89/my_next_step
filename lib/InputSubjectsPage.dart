@@ -28,14 +28,14 @@ class _InputSubjectsPageState extends State<InputSubjectsPage> {
 
   static String cutOffChecker(){
     print(accinfo.cca_points);
-    if(accinfo.cca_points!=null)
+    if(accinfo.cca_points!="" && accinfo.cca_points!=null)
       return accinfo.cca_points;
     return '0';
   }
 
 
   static List subjectchecker(){
-    if(accinfo.selectedSubjectValues!="")
+    if(accinfo.selectedSubjectValues!="" && accinfo.selectedSubjectValues!=null)
       return accinfo.selectedSubjectValues.split("*");
     return [                                      'English Language',
       'Art/Art & Design',
@@ -44,7 +44,7 @@ class _InputSubjectsPageState extends State<InputSubjectsPage> {
       'Commerce'];
   }
   static List gradechecker(){
-    if(accinfo.selectedGradeValues!="")
+    if(accinfo.selectedGradeValues!="" && accinfo.selectedGradeValues!=null)
       return accinfo.selectedGradeValues.split("*");
     return [                                      'A1',
     'A2',

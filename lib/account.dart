@@ -54,6 +54,32 @@ class _accountState extends State<account> {
           ));
 
           //await Future.delayed(Duration(seconds: 1));
+          accinfo.isloggedin = false;
+
+          while(accinfo.favlist.isNotEmpty)
+            accinfo.favlist.removeLast();
+
+          while(accinfo.recommendedlist.isNotEmpty)
+          {
+            accinfo.recommendedlist.removeLast();
+            accinfo.recommendedlistcutoff.removeLast();
+            accinfo.recommendedlistalphabet.removeLast();
+          }
+
+          accinfo.accountID = "";
+          accinfo.username = "";
+          accinfo.password = "";
+          accinfo.email = "";
+          accinfo.score_a = "";
+          accinfo.score_b = "";
+          accinfo.score_c = "";
+          accinfo.score_d = "";
+          accinfo.interest = "";
+          accinfo.location = "";
+          accinfo.selectedSubjectValues = "";
+          accinfo.selectedGradeValues = "";
+          accinfo.cca_points = "";
+
 
           Navigator.pop(context, 'Confirm');
           Navigator.pop(context);
