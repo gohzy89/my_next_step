@@ -258,6 +258,8 @@ class _accountState extends State<account> {
 
                                         deleteAccount();
 
+                                        d_pwinpt.clear();
+
                                       },
                                       child: Text(
                                         'Confirm',
@@ -278,8 +280,11 @@ class _accountState extends State<account> {
                                                       width: 3)))),
                                     ),
                                     ElevatedButton(
-                                      onPressed: () =>
-                                          Navigator.pop(context, 'Cancel'),
+                                      onPressed: () {
+                                        d_pwinpt.clear();
+                                        Navigator.pop(context, 'Cancel');
+
+                                      },
                                       child: Text(
                                         'Cancel',
                                         style: TextStyle(color: Colors.red),

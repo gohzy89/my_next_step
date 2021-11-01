@@ -96,7 +96,9 @@ class _InputSubjectsPageState extends State<InputSubjectsPage> {
           //   enableWidgets = true;
           // });
 
-
+          setState(() {
+                accinfo.score_a = scores[0].toString();
+              });
 
           accinfo.score_a = scores[0].toString();
           accinfo.score_b = scores[1].toString();

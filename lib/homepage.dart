@@ -156,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    recommendbtn(accinfo.isloggedin && accinfo.score_a!=""),
+                    recommendbtn(accinfo.isloggedin && accinfo.score_a!="" && accinfo.score_a!=null),
                     ElevatedButton.icon(
                       onPressed: () {Navigator.push(context,MaterialPageRoute(builder: (context) => browse()));},
                       icon: Icon(Icons.search,size: 50,color: Colors.black,),
