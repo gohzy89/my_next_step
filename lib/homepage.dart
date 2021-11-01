@@ -33,13 +33,8 @@ class _HomePageState extends State<HomePage> {
 
   Widget settingbtn(bool status) {
     if(status)
-    return  IconButton(icon: Icon(Icons.settings),onPressed: () async{
-      await Navigator.push(context,MaterialPageRoute(builder: (context) => settings()));
-      setState(() {
-        if(accinfo.score_a!="" && accinfo.score_a!=null){
-          accinfo.score_a = accinfo.score_a;
-        }
-      });
+    return  IconButton(icon: Icon(Icons.settings),onPressed: (){
+      Navigator.push(context,MaterialPageRoute(builder: (context) => settings()));
       },iconSize: 40,);
     else
       return IconButton(icon: Icon(Icons.settings),onPressed: null,iconSize: 40,);
@@ -165,7 +160,7 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    recommendbtn(accinfo.isloggedin && accinfo.score_a!="" && accinfo.score_a!=null),
+                    recommendbtn(accinfo.isloggedin),//recommendbtn(accinfo.isloggedin && accinfo.score_a!="" && accinfo.score_a!=null),
                     ElevatedButton.icon(
                       onPressed: () {Navigator.push(context,MaterialPageRoute(builder: (context) => browse()));},
                       icon: Icon(Icons.search,size: 50,color: Colors.black,),

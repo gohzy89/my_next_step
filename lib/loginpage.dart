@@ -52,9 +52,6 @@ class _loginState extends State<login> {
 
 
 
-
-
-
         accinfo.isloggedin = true;
         print(lp_uinpt.text);
         accinfo.accountID = data["accountId"];
