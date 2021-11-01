@@ -80,7 +80,7 @@ class _accountState extends State<account> {
           accinfo.selectedGradeValues = "";
           accinfo.cca_points = "";
 
-          await Future.delayed(Duration(seconds: 1));
+          //await Future.delayed(Duration(seconds: 1));
 
           Navigator.pop(context, 'Confirm');
           Navigator.pop(context);
@@ -259,7 +259,7 @@ class _accountState extends State<account> {
 
                                         deleteAccount();
 
-                                        d_pwinpt.clear();
+                                       // d_pwinpt.clear();
 
                                       },
                                       child: Text(
@@ -282,7 +282,7 @@ class _accountState extends State<account> {
                                     ),
                                     ElevatedButton(
                                       onPressed: () {
-                                        d_pwinpt.clear();
+                                        //d_pwinpt.clear();
                                         Navigator.pop(context, 'Cancel');
 
                                       },

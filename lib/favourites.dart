@@ -41,6 +41,7 @@ class _favouriteState extends State<favourite> {
       ));
     } else {
       try {
+
         var data = json.decode(response.body);
         print("data: $data");
         if (data["result"] == 1) {

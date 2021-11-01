@@ -21,6 +21,9 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   bool showProgess = false;
   bool enableWidgets = true;
 
+
+
+
   Future register() async {
     String url = "http://immoral-boilers.000webhostapp.com/doRegister.php";
     var response = await http.post(Uri.parse(url), body: {
@@ -55,6 +58,11 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         accinfo.isloggedin = true;
         print(usernameTextEditingController.text);
         accinfo.username = usernameTextEditingController.text;
+
+        accinfo.accountID = data["accountId"];
+        accinfo.password = sha1.convert(utf8.encode(confirmPasswordTextEditingController.text)).toString();
+        accinfo.email = confirmRecoveryEmailTextEditingController.text;
+
         print(accinfo.username);
         Navigator.push(context,
           MaterialPageRoute(builder: (context) => HomePage(),),);

@@ -136,7 +136,7 @@ class accinfo {
 
     recommendedlistschool.removeRange(0, recommendedlistschool.length);
 
-    if(score_a==null||score_b==null||score_c==null||score_d==null||interest==null||location==null)
+    if(score_a==null||score_b==null||score_c==null||score_d==null||interest==null||location==null||score_a==""||score_b==""||score_c==""||score_d==""||interest==""||location=="")
       return;
 
     for(int i=0;i<allcourse.length;i++){
@@ -173,6 +173,7 @@ class accinfo {
           }
           break;
       }
+
     }
 
     sortalphabetlist1();
@@ -195,7 +196,6 @@ class accinfo {
         recommendedlist.removeAt(i+1);
       }}
     }
-
   }
 
   static List<String> favlist = [];

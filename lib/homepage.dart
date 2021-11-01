@@ -30,7 +30,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-
+ 
   Widget settingbtn(bool status) {
     if(status)
     return  IconButton(icon: Icon(Icons.settings),onPressed: (){
