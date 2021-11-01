@@ -53,7 +53,7 @@ class _accountState extends State<account> {
             content: Text("Delete Successful"),
           ));
 
-          //await Future.delayed(Duration(seconds: 1));
+
           accinfo.isloggedin = false;
 
           while(accinfo.favlist.isNotEmpty)
@@ -80,6 +80,7 @@ class _accountState extends State<account> {
           accinfo.selectedGradeValues = "";
           accinfo.cca_points = "";
 
+          await Future.delayed(Duration(seconds: 1));
 
           Navigator.pop(context, 'Confirm');
           Navigator.pop(context);

@@ -29,9 +29,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Widget settingbtn(bool status){
+
+
+  Widget settingbtn(bool status) {
     if(status)
-    return IconButton(icon: Icon(Icons.settings),onPressed: () {Navigator.push(context,MaterialPageRoute(builder: (context) => settings()));},iconSize: 40,);
+    return  IconButton(icon: Icon(Icons.settings),onPressed: () async{
+      await Navigator.push(context,MaterialPageRoute(builder: (context) => settings()));
+      setState(() {
+        if(accinfo.score_a!="" && accinfo.score_a!=null){
+          accinfo.score_a = accinfo.score_a;
+        }
+      });
+      },iconSize: 40,);
     else
       return IconButton(icon: Icon(Icons.settings),onPressed: null,iconSize: 40,);
   }

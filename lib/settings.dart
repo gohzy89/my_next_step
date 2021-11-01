@@ -48,7 +48,8 @@ class _settingsState extends State<settings> {
     accinfo.selectedGradeValues = "";
     accinfo.cca_points = "";
 
-    await Future.delayed(Duration(seconds: 1));
+    //await Future.delayed(Duration(seconds: 1));
+
     Navigator.pop(context);
     Navigator.pop(context);
     if(Navigator.canPop(context))//create account page
