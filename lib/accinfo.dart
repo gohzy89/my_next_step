@@ -65,7 +65,7 @@ class accinfo {
       allcourse[map['data'][i]["courseCode"]]["school_name"] =
           schools[map['data'][i]["courseCode"][0]];
       inserttocutoff(map['data'][i]["courseCode"]);
-      alphabetlist.add(allcourse[map['data'][i]["courseCode"]]["courseName"]);
+      alphabetlist.add(allcourse[map['data'][i]["courseCode"]]["courseName"]+map['data'][i]["courseCode"]);
     }
     sortalphabetlist();
 
@@ -110,6 +110,7 @@ class accinfo {
       alphabetlist.insert(i, alphabet[alphabetlist[i]]);
       alphabetlist.removeAt(i + 1);
     }
+
   }
 
   static void sortalphabetlist1() {
@@ -142,7 +143,7 @@ class accinfo {
     for(int i=0;i<allcourse.length;i++){
       recommendedlist.add(allcourse.keys.elementAt(i));
       recommendedlistschool.add(allcourse.keys.elementAt(i));
-      recommendedlistalphabet.add(allcourse[allcourse.keys.elementAt(i)]["courseName"]);
+      recommendedlistalphabet.add(allcourse[allcourse.keys.elementAt(i)]["courseName"]+allcourse.keys.elementAt(i));
     }
 
 
