@@ -131,7 +131,7 @@ class _selectedState extends State<selected> {
                   Row(
                     children: [
                       Container(
-                          height: MediaQuery.of(context).size.width * 0.25,
+                          height: MediaQuery.of(context).size.width * 0.27,
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: Center(child: Text(coursename+" ($coursecode)\n"+"Cutoff:"+accinfo.allcourse[coursecode]["courseCutOff"],style: TextStyle(fontSize: 20,),textAlign: TextAlign.center,))),
                       IconButton(

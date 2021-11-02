@@ -116,7 +116,7 @@ class _changeemailState extends State<changeemail> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0.0, 85, 0.0, 15),
+                    padding: const EdgeInsets.fromLTRB(0.0, 95, 0.0, 15),
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: Container(
