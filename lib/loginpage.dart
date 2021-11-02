@@ -47,7 +47,7 @@ class _loginState extends State<login> {
         ));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text("Login Successful"),
+          content: Text("Login Successful"),duration: Duration(seconds: 2),
         ));
 
 

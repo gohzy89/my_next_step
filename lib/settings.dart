@@ -55,6 +55,8 @@ class _settingsState extends State<settings> {
     if(Navigator.canPop(context))//create account page
       Navigator.pop(context);
 
+    ScaffoldMessenger.of(context)..removeCurrentSnackBar()..showSnackBar(SnackBar(content: Text("Log out successful"),duration: Duration(seconds: 2)));
+
     setState(() {
       enableWidgets = true;
       showProgess = false;
@@ -62,8 +64,8 @@ class _settingsState extends State<settings> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return AbsorbPointer(
+  Widget build(BuildContext context) => Scaffold(body:
+    AbsorbPointer(
       absorbing: !enableWidgets,
       child: Container(
         color: Colors.white,
@@ -164,7 +166,7 @@ class _settingsState extends State<settings> {
           ),
         ),
       ),
-    );
+    ));
   }
-}
+
 
