@@ -114,8 +114,7 @@ class _browseState extends State<browse> {
 
               ),
               body: SearchBar<Widget>(
-
-                placeHolder: ListView.separated(
+hintText: "Search by Course Name",                placeHolder: ListView.separated(
                     itemCount: accinfo.allcourse.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
